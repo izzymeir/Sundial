@@ -1,2 +1,2 @@
 # Sundial
-The main repo for the GoForm project, including Salt configs.
+node.js - based Astronomical calculation. Includes SaltStack setup.
