@@ -1,6 +1,6 @@
 mongodb:
   #Import public key for the package
-  import-key:
+  - import-key:
     cmd.run:
       - names:
         - sudo apt-key adv --keyserver {{ pillar['MONGODB_KEYSERVER'] }} --recv {{ pillar['MONGODB_GPG_KEY'] }}
@@ -8,7 +8,7 @@ mongodb:
       - creates: MONGODB_PACK_KEY_ADDED
 
   #Create the list file for mongodb. Gets the right version for this version of Ubuntu
-  create-list:
+  - create-list:
     cmd.run:
       - names:
         - echo "deb http://repo.mongodb.org/apt/ubuntu {{ salt['grains.get']('oscodename', '') }}/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
@@ -16,7 +16,7 @@ mongodb:
       - creates: MONGODB_PACK_LIST_CREATED
 
   #Install the packages
-  install-packages:
+  - install-packages:
     cmd.run:
       - names:
         - sudo apt-get update | sudo apt-get install -y mongodb-org
