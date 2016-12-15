@@ -11,4 +11,4 @@ sudo cp -r pillar/* /srv/pillar
 # Tell Salt to apply the highstate in top.sls
 sudo salt-call --local state.apply
 
-echo "DONE\n"
+echo "DONE salt_apply_top.sh DONE\n"
