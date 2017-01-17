@@ -18,4 +18,4 @@ node-pm2-installed:
 # Make sure that our hello world server is up
 node-server-start:
   cmd.run:
-    - name: pm2 start node/hello.js
+    - name: pm2 start izzymeir/Sundial/node/hello.js
