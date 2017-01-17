@@ -8,6 +8,7 @@ node-install:
   pkg.installed:
     - pkgs:
       - nodejs
+      - nodejs-legacy
       - npm
 
 # make sure we have pm2
