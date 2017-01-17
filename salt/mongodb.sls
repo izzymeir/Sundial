@@ -15,7 +15,7 @@ mongo-create-list:
 #Apt-get Update
 mongo-update:
   cmd.run:
-    - name: sudo apt-key update | sudo apt-get update
+    - name: sudo apt-key update | sudo apt-get clean | sudo apt-get update
 
 #Install
 mongo-install:
