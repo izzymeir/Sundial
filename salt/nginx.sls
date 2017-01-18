@@ -3,6 +3,17 @@ nginx-install:
   pkg.installed:
     - name: nginx
 
+# We need to allow our server bind to an outside IP address that it doesn't know
+# Use our copy of sysctl.conf
+/etc/sysctl.conf:
+  file.managed:
+    - source: salt://nginx/sysctl.conf
+
+# Load our sysctl.conf
+sysctl-load-config-file:
+  cmd.run:
+    - name: sudo sysctl -p /etc/sysctl.conf
+
 # Use our copy of nginx.conf
 /etc/nginx/nginx.conf:
   file.managed:
