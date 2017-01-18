@@ -4,3 +4,4 @@ base:
     - nginx
     - mongodb
     - node
+    - ufw

@@ -31,3 +31,18 @@ mongo-update:
 mongo-install:
   cmd.run:
     - name: sudo apt-get install -y mongodb-org
+
+# Use mongodb.conf
+mongo-configuration-file:
+  file.managed:
+    - name: /etc/mongod.conf
+    - source: salt://mongodb/mongod.conf
+
+# Make sure mongodb is running, restart if we changed mongod.conf
+mongo-startup:
+  service.running:
+    - name: mongod
+    - watch:
+      - file: /etc/mongod.conf
+    - require:
+      - pkg: mongodb-org
