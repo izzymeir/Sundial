@@ -44,5 +44,3 @@ mongo-startup:
     - name: mongod
     - watch:
       - file: /etc/mongod.conf
-    - require:
-      - pkg: mongodb-org
