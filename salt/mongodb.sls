@@ -32,11 +32,14 @@ mongo-install:
   cmd.run:
     - name: sudo apt-get install -y mongodb-org
 
-# Use mongodb.conf
-mongo-configuration-file:
+# Use our jinja-managed configuration file for mongod.conf
+/etc/mongod.conf:
   file.managed:
-    - name: /etc/mongod.conf
-    - source: salt://mongodb/mongod.conf
+    - source: salt://mongodb/mongod.conf.jinja
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: 640
 
 # Make sure mongodb is running, restart if we changed mongod.conf
 mongo-startup:

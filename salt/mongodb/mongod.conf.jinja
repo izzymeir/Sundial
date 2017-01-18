@@ -1,7 +1,10 @@
 # mongod.conf
 
-# izzymeir notes: This is our version of mongod.conf
+# izzymeir notes: This is our jinja-managed version of mongod.conf
 # Most important is to make sure that we can only access the DB from localhost
+
+{%- set address = pillar['MONGODB_IP'] -%}
+{%- set port = pillar['MONGODB_PORT'] -%}
 
 # for documentation of all options, see:
 #   http://docs.mongodb.org/manual/reference/configuration-options/
@@ -23,8 +26,8 @@ systemLog:
 
 # network interfaces
 net:
-  port: 27017
-  bindIp: 127.0.0.1
+  port: {{ port }}
+  bindIp: {{ address }}
 
 
 #processManagement:
