@@ -42,7 +42,7 @@ ufw-default-allow-outgoing:
 # Tell UFW to allow SSH
 ufw-allow-ssh:
   cmd.run:
-    - name: sudo ufw --force allow ssh
+    - name: sudo ufw --force allow 'ssh'
 
 # Tell UFW to allow nginx
 ufw-allow-nginx:
