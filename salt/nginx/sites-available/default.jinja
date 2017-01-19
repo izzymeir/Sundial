@@ -8,8 +8,6 @@
 {%- set html_root = pillar['NGINX_HTML_ROOT'] -%}
 {%- set node_virtual_directory = pillar['NODE_VIRTUAL_DIRECTORY'] -%}
 
-# Default server configuration
-#
 server {
 
         # HTTP server configuration
@@ -37,11 +35,11 @@ server {
         # Re-direct the api directory to a nodejs server
         location /{{ node_virtual_directory }} {
                 proxy_pass {{ node_address }}:{{ node_port }};
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection 'upgrade';
-                proxy_set_header Host $host;
-                proxy_cache_bypass $http_upgrade;
+                # proxy_http_version 1.1;
+                # proxy_set_header Upgrade $http_upgrade;
+                # proxy_set_header Connection 'upgrade';
+                # proxy_set_header Host $host;
+                # proxy_cache_bypass $http_upgrade;
         }
 
 }
