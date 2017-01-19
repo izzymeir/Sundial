@@ -24,32 +24,7 @@ ufw-installed-and-running:
     - require:
       - pkg: ufw
 
-# Tell UFW reset to its initial configuration, so we know what we're starting from
-ufw-reset:
-  cmd.run:
-    - name: sudo ufw --force reset
-
-# Tell UFW to default to denying incoming connections
-ufw-default-deny-incoming:
-  cmd.run:
-    - name: sudo ufw --force default deny incoming
-
-# Tell UFW to default to allowing outgoing connections
-ufw-default-allow-outgoing:
-  cmd.run:
-    - name: sudo ufw --force default allow outgoing
-
-# Tell UFW to allow SSH
-ufw-allow-ssh:
-  cmd.run:
-    - name: sudo ufw --force allow 'OpenSSH'
-
-# Tell UFW to allow nginx
-ufw-allow-nginx:
-  cmd.run:
-    - name: sudo ufw --force allow 'Nginx Full'
-
-# Tell UFW to be enabled
-ufw-enable:
-  cmd.run:
-    - name: sudo ufw --force enable
+# Run a script that handles configuration of the firewall
+ufw-script:
+  cmd.script:
+    - source: salt://ufw/firewall_settings.sh
