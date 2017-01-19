@@ -16,11 +16,15 @@ node-pm2-installed:
   cmd.run:
     - name: sudo npm install pm2 -g
 
-# put our Hello World script in the right place
+# Use our jinja-managed Hello World script
 node-scripts:
   file.managed:
     - name: /var/www/html/hello.js
-    - source: salt://node/hello.js
+    - source: salt://node/hello.js.jinja
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: 640
 
 # Make sure that our hello world server is up
 node-server-start:
