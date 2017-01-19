@@ -24,7 +24,7 @@ node-scripts:
     - template: jinja
     - user: root
     - group: root
-    - mode: 640
+    - mode: 644
 
 # Make sure that our hello world server is up
 node-server-start:

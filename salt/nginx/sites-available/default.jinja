@@ -35,7 +35,7 @@ server {
         }
 
         # Re-direct the api directory to a nodejs server
-        location /{{ node_virtual_directory }} {
+        location /{{ node_virtual_directory }}/ {
                 proxy_pass {{ node_address }}:{{ node_port }};
                 # proxy_http_version 1.1;
                 # proxy_set_header Upgrade $http_upgrade;
