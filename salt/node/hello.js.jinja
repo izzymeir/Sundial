@@ -1,3 +1,7 @@
+{%- // This should be filled in with jinja -%}
+{%- set address = pillar['NODE_SERVER_IP'] -%}
+{%- set port = pillar['NODE_SERVER_PORT'] -%}
+
 // Simple Hello World! test
 
 // get an http object
@@ -7,7 +11,7 @@ var http = require('http');
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   res.end('Hello World! Love, nodejs\n');
-}).listen(8081, '127.0.0.1');
+}).listen({{ port }}, '{{ address }}');
 
 // tell us we're good to go
-console.log('Server running at http://127.0.0.1:8081/');
+console.log('Server running at http://{{ address }}:{{ port }}/');
