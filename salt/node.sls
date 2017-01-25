@@ -16,11 +16,12 @@ node-pm2-installed:
   cmd.run:
     - name: sudo npm install pm2 -g
 
-# Use our jinja-managed Hello World script
+# Populate the API directory with jinja-managed scripts
+# /var/www/html/api e.g.
 node-scripts:
-  file.managed:
-    - name: /var/www/html/hello.js
-    - source: salt://node/hello.js.jinja
+  file.recurse:
+    - name: {{ pillar['NGINX_HTML_ROOT'] }}/{{ pillar['NODE_VIRTUAL_DIRECTORY'] }}
+    - source: salt://node
     - template: jinja
     - user: root
     - group: root
