@@ -16,22 +16,11 @@ node-pm2-installed:
   cmd.run:
     - name: sudo npm install pm2 -g
 
-# Populate the html directory from our managed copy.
-# /var/www/html e.g.
-node-populate-html-directory:
-  file.recurse:
-    - name: {{ pillar['NGINX_HTML_ROOT'] }}
-    - source: salt://html
-    - user: root
-    - group: root
-    - file_mode: 644
-    - dir_mode: 644
-
 # Populate the API directory with jinja-managed scripts
-# /var/www/html/api e.g.
+# /var/www/node e.g.
 node-scripts:
   file.recurse:
-    - name: {{ pillar['NGINX_HTML_ROOT'] }}/{{ pillar['NODE_VIRTUAL_DIRECTORY'] }}
+    - name: {{ pillar['NODE_ROOT'] }}
     - source: salt://node
     - template: jinja
     - user: root
@@ -42,4 +31,4 @@ node-scripts:
 # Make sure that our hello world server is up
 node-server-start:
   cmd.run:
-    - name: pm2 start /var/www/html/hello.js
+    - name: pm2 start {{ pillar['NODE_ROOT'] }}/hello.js
