@@ -40,14 +40,18 @@ sysctl-load-config-file:
 
 # Populate the html directory from our managed copy.
 # /var/www/html e.g.
+# process jinja if there is any.
+# Clean (delete) unexpected files
 node-populate-html-directory:
   file.recurse:
     - name: {{ pillar['NGINX_HTML_ROOT'] }}
     - source: salt://html
+    - template: jinja
     - user: root
     - group: root
     - file_mode: 644
     - dir_mode: 755
+    - clean: True
 
 # Make sure nginx service is running
 nginx-start:

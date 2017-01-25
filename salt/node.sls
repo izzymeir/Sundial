@@ -16,8 +16,10 @@ node-pm2-installed:
   cmd.run:
     - name: sudo npm install pm2 -g
 
-# Populate the API directory with jinja-managed scripts
+# Populate the API directory from our managed copy.
 # /var/www/node e.g.
+# process jinja if there is any.
+# Clean (delete) unexpected files
 node-scripts:
   file.recurse:
     - name: {{ pillar['NODE_ROOT'] }}
@@ -27,6 +29,7 @@ node-scripts:
     - group: root
     - file_mode: 644
     - dir_mode: 755
+    - clean: True
 
 # Make sure that our hello world server is up
 node-server-start:
