@@ -42,6 +42,7 @@ sysctl-load-config-file:
 # /var/www/html e.g.
 # process jinja if there is any.
 # Clean (delete) unexpected files
+# Create directories, if needed
 node-populate-html-directory:
   file.recurse:
     - name: {{ pillar['NGINX_HTML_ROOT'] }}
@@ -52,6 +53,7 @@ node-populate-html-directory:
     - file_mode: 644
     - dir_mode: 755
     - clean: True
+    - makedirs: True
 
 # Make sure nginx service is running
 nginx-start:

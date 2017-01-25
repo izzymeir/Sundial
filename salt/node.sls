@@ -20,6 +20,7 @@ node-pm2-installed:
 # /var/www/node e.g.
 # process jinja if there is any.
 # Clean (delete) unexpected files
+# Create directories, if needed
 node-scripts:
   file.recurse:
     - name: {{ pillar['NODE_ROOT'] }}
@@ -30,6 +31,7 @@ node-scripts:
     - file_mode: 644
     - dir_mode: 755
     - clean: True
+    - makedirs: True
 
 # Make sure that our hello world server is up
 node-server-start:
