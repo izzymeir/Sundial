@@ -38,6 +38,12 @@ sysctl-load-config-file:
     - require:
       - file: /etc/nginx/sites-available/default
 
+# Populate the /var/www/html directory from our managed copy.
+nginx-populate-html-directory:
+  file.recurse:
+    - name: {{ pillar['NGINX_HTML_ROOT'] }}
+    - source: salt://html
+
 # Make sure nginx service is running
 nginx-start:
   service.running:
