@@ -26,7 +26,7 @@ node-scripts:
     - user: root
     - group: root
     - file_mode: 644
-    - dir_mode: 644
+    - dir_mode: 755
 
 # Make sure that our hello world server is up
 node-server-start:

@@ -47,7 +47,7 @@ node-populate-html-directory:
     - user: root
     - group: root
     - file_mode: 644
-    - dir_mode: 644
+    - dir_mode: 755
 
 # Make sure nginx service is running
 nginx-start:
